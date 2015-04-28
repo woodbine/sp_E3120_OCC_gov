@@ -26,7 +26,7 @@ soup = BeautifulSoup(html)
 links = soup.findAll('a', href=True)
 
 for link in links:
-	url = 'http://www.nottinghamshire.gov.uk' + link['href']
+	url = 'http://www.oxfordshire.gov.uk' + link['href']
 	if '.csv' in url:
 		title = link.encode_contents(formatter='html').replace('&nbsp;',' ') #  gets rid of erroneous &nbsp; chars
 		title = title.upper().strip()
