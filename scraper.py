@@ -104,7 +104,13 @@ for link in links:
         title = link.encode_contents(formatter='html').replace('&nbsp;',' ')
         title = title.upper().strip()
         csvYr = title.split(' ')[1]
-        csvMth = title.split(' ')[0][:3]
+        if 'CSV' in csvYr or not csvYr:
+            try:
+                csvYr = re.search('(\d{4})\.', url).groups()[0]
+            except:
+                csvYr = link.find_previous('h3').text
+
+        csvMth = title[:3]
         csvMth = csvMth.upper()
         csvMth = convert_mth_strings(csvMth)
         data.append([csvYr, csvMth, url])
