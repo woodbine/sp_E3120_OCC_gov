@@ -106,11 +106,11 @@ for link in links:
         csvYr = title.split(' ')[1]
         if 'CSV' in csvYr or not csvYr:
             try:
-                csvYr = re.search('(\d{4})\.', url).groups()[0]
+                csvYr = re.search('(20\d{2})\.', url).groups()[0]
             except:
                 csvYr = link.find_previous('h3').text
-
         csvMth = title[:3]
+        csvYr = csvYr.replace('monthly spending reports', '').strip()
         csvMth = csvMth.upper()
         csvMth = convert_mth_strings(csvMth)
         data.append([csvYr, csvMth, url])
